@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.seleccionEntity;
-import com.example.service.implentacion.SeleccionService;
 
+import com.example.demo.service.implentacion.SeleccionService;
+
+@CrossOrigin
 @RestController
 @RequestMapping("/selecciones")
 public class SeleccionController {
@@ -21,7 +24,7 @@ public class SeleccionController {
 	@Autowired
 	SeleccionService seleccionService;
 	
-	@GetMapping("/listar")
+	@GetMapping
 	public List<seleccionEntity> ListSeleccion(){
 	
 		return seleccionService.getAllSeleccion();
@@ -29,31 +32,36 @@ public class SeleccionController {
 	
 	
 	@GetMapping("/{id}")
-    public seleccionEntity getEjercicio(@PathVariable Integer id)  {
+    public seleccionEntity getSeleccion(@PathVariable Integer id)  {
    
-        return seleccionService.getAllSeleccion().get(id);
+        return seleccionService.getSeleccionById(id).get();
         
 	}
 	
 	
-	@PostMapping("/save")
+	@PostMapping
 	public seleccionEntity saveEjercicio(@RequestBody seleccionEntity seleccion) {
 	  
 	    return seleccionService.createSeleccion(seleccion);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping
 	public seleccionEntity updateSeleccion(@RequestBody seleccionEntity seleccion) {
 	
 		return seleccionService.updateSeleccion(seleccion);
 	}
 	
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteEjercicio(@PathVariable Integer id) {
 	 seleccionService.deleteSeleccion(id);
 	}
 	
+	@GetMapping("/grupo/{grupo}")
+	public List<seleccionEntity> getGrupo(@PathVariable String grupo){
+		
+		return seleccionService.listGrupos(grupo);
+	}
 
 
 }

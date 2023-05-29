@@ -1,20 +1,13 @@
-package com.example.service.implentacion;
+package com.example.demo.service.implentacion;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.example.demo.entities.seleccionEntity;
 import com.example.demo.repositorios.SeleccionRepository;
-import com.example.service.interfaces.SeleccionServiceInterface;
+import com.example.demo.service.interfaces.SeleccionServiceInterface;
 
 @Service
 public class SeleccionService implements SeleccionServiceInterface {
@@ -65,5 +58,13 @@ public class SeleccionService implements SeleccionServiceInterface {
 		seleccionRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public List<seleccionEntity> listGrupos(String grupo) {
+	
+		return seleccionRepository.findByGrupo(grupo);
+	}
+	
+	
 	
 }

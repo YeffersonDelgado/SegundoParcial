@@ -1,6 +1,12 @@
 package com.example.demo.entities;
 
-import javax.persistence.*;
+
+
+import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +20,10 @@ public class resultadoEntity {
    
 	
 	
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@SequenceGenerator(name="resultado_id_seq",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "resultado_id_seq")
+	private Integer id;
 
     // Otros atributos de la entidad Resultado
     

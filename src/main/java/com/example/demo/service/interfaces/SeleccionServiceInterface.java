@@ -1,4 +1,4 @@
-package com.example.service.interfaces;
+package com.example.demo.service.interfaces;
 
 import java.util.*;
 
@@ -17,6 +17,8 @@ public interface SeleccionServiceInterface {
 		public seleccionEntity updateSeleccion(seleccionEntity seleccion);
 		
 		public void deleteSeleccion(Integer id);
+		
+		public List<seleccionEntity> listGrupos(String grupo);
 	}
 
 

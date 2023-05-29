@@ -5,8 +5,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +23,9 @@ import lombok.NoArgsConstructor;
 public class partidoEntity {
   
 	
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@SequenceGenerator(name="partido_id_seq",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "partido_id_seq")
 	private Integer id;
 	 
 	private Date fecha;

@@ -3,18 +3,24 @@ package com.example.demo.entities;
 
 import lombok.Data;
 
-import java.io.Serializable;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 
 
 
 @Data
 @Entity
-public class continenteEntity implements Serializable {
+@Table (name = "continente")
+public class continenteEntity{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="continente_id_seq",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "continente_id_seq")
 	private Integer id;
 	private String nombre;
 
