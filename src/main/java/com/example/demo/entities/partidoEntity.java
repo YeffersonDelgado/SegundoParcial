@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,14 +19,16 @@ import lombok.NoArgsConstructor;
 public class partidoEntity {
   
 	
-	@Id
-	@SequenceGenerator(name="partido_id_seq",allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "partido_id_seq")
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	 
 	private Date fecha;
+	
 	@ManyToOne
 	@JoinColumn(name="estadio_id")
 	private estadioEntity estadio;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "partido")
 	private List<resultadoEntity>resultados;

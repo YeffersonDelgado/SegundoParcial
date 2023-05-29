@@ -17,41 +17,37 @@ import com.example.demo.repositorios.SeleccionRepository;
 import com.example.service.interfaces.SeleccionServiceInterface;
 
 @Service
-public class SeleccionService {
+public class SeleccionService implements SeleccionServiceInterface {
 
 	@Autowired
 	SeleccionRepository seleccionRepository;
 	
-	@GetMapping
-	public List<seleccionEntity> lista(){
+	@Override
+	public List<seleccionEntity> getAllSeleccion() {
+	
 		return seleccionRepository.findAll();
-	}
-	@GetMapping("/{id}")
-	public Optional<seleccionEntity> findSeleccionById(@PathVariable Integer id){
-		Optional<seleccionEntity>seleccion=seleccionRepository.findById(id);
-		if(seleccion.isPresent()) {
-			return seleccion;
-		}
-		return null;
-		
 	}
 	
 	@Override
-	public List<seleccionEntity> seleccionByGrupo(seleccionEntity seleccion){
+	public Optional<seleccionEntity> getSeleccionById(Integer id) {
 		
-		return SeleccionServiceInterface.(seleccion);
+			Optional<seleccionEntity> seleccion=seleccionRepository.findById(id);
+			if(seleccion.isPresent()) {
+				return seleccion;
+			}
+			return null;
+		}
+	
+	
+	@Override
+	public seleccionEntity createSeleccion(seleccionEntity seleccion) {
+		return seleccionRepository.save(seleccion);
 	}
 	
-	@PostMapping
-	public seleccionEntity postSeleccion(@RequestBody seleccionEntity seleccion) {
-		seleccionRepository.save(seleccion);
-		return seleccion;
-	}
 	
-	
-	@PutMapping
-	public seleccionEntity updateSeleccion(@PathVariable Integer id,@RequestBody seleccionEntity seleccion) {
-		Optional<seleccionEntity>seleccionCurrent=seleccionRepository.findById(id);
+	@Override
+	public seleccionEntity updateSeleccion(seleccionEntity seleccion) {
+		Optional<seleccionEntity>seleccionCurrent=seleccionRepository.findById(seleccion.getId());
 		if(seleccionCurrent.isPresent()) {
 			seleccionEntity seleccionReturn =seleccionCurrent.get();
 			seleccionReturn.setNombre(seleccion.getNombre());
@@ -62,14 +58,12 @@ public class SeleccionService {
 		}
 		return null;
 	}
-	@DeleteMapping("/{id}")
-	public seleccionEntity deleteSeleccion(@PathVariable Integer id ) {
-		Optional<seleccionEntity>seleccion=seleccionRepository.findById(id);
-		if(seleccion.isPresent()) {
-			seleccionRepository.deleteById(id);
-			return seleccion.get();
-		}
-		return null;
+	
+	@Override
+	public void deleteSeleccion(Integer id) {
+	
+		seleccionRepository.deleteById(id);
+		
 	}
 	
 }

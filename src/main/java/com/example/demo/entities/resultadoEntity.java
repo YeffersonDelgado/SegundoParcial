@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 public class resultadoEntity {
    
 	
-	@Id
+	
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     // Otros atributos de la entidad Resultado
