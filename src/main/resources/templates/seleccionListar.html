@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado de Selecciones</title>
+</head>
+<body>
+
+
+    <h2>Lista de Selecciones</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Continente</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre la lista de ejercicios -->
+            <tr th:each="seleccion : ${selecciones}">
+                <td th:text="${seleccion.nombre}"></td>
+                <td th:text="${seleccion.grupo}"></td>
+                <td th:text="${seleccion.continente}"></td>
+             
+            
+                <td><a th:href="@{/selecciones/editar/{id}(id=${seleccion.id})}" > Editar</a>  </td>
+                <td> <a th:href="@{/selecciones/eliminar/{id}(id=${seleccion.id})}">Eliminar</a> </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a th:href="@{/selecciones/registrar}" >Agregar nuevo ejercicio</a>
+        <a th:href="@{/selecciones/grupo/{id}(id=${grupo.id})}" >Seleccionar Por Grupos</a>
+        
+</body>
+</html>

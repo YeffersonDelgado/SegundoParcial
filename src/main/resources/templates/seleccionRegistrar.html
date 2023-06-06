@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registrando Datos</title>
+</head>
+<body>
+    <h2>Formulario de Registro</h2>
+    
+         
+    	<form  th:action="@{/selecciones/registrar}" th:object="${seleccionEntity}" method="post">
+            <!-- Campo de Nombre -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:field="*{nombre}" />
+        
+        <!-- Campo de Edad -->
+        <label for="edad">Continente:</label>
+        <input type="text" id="continente" name="continente" th:field="*{continente}" />
+   
+   
+        <!-- Campo de Edad -->
+        <label for="edad">Grupo:</label>
+        <input type="text" id="grupo" name="grupo" th:field="*{grupo}" />
+   
+        <!-- Botón Guardar -->
+        <button type="submit">Guardar</button>
+    </form>
+    
+    <h3>CONTINENTES REFERENCIADOS POR ID</h3>
+<p>  id = 1  :  Europa
+     id = 2  :  Asia
+     id = 3  :  Africa
+     id = 4  :  Oceania
+     id = 5  :  America del Norte
+     id = 6  :  America del Sur </p>
+    
+    
+    
+
+     
+    
+    
+
+    
+</body>
+</html>

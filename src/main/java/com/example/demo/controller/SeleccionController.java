@@ -1,3 +1,4 @@
+
 package com.example.demo.controller;
 
 import java.util.List;
@@ -18,11 +19,12 @@ import com.example.demo.service.implentacion.SeleccionService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/selecciones")
+@RequestMapping("/seleccioness")
 public class SeleccionController {
 	
 	@Autowired
 	SeleccionService seleccionService;
+	
 	
 	@GetMapping
 	public List<seleccionEntity> ListSeleccion(){
@@ -31,7 +33,7 @@ public class SeleccionController {
 	}
 	
 	
-	@GetMapping("/{id}")
+	@GetMapping("/get/{id}")
     public seleccionEntity getSeleccion(@PathVariable Integer id)  {
    
         return seleccionService.getSeleccionById(id).get();
@@ -45,7 +47,7 @@ public class SeleccionController {
 	    return seleccionService.createSeleccion(seleccion);
 	}
 	
-	@PutMapping
+	@PutMapping("/update")
 	public seleccionEntity updateSeleccion(@RequestBody seleccionEntity seleccion) {
 	
 		return seleccionService.updateSeleccion(seleccion);
